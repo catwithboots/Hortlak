@@ -15,6 +15,7 @@ namespace Service
         static void Main(string[] args)
         {
             var service = new HortlakService();
+
             if (Environment.UserInteractive)
             {
                 service.StartConsole(args);
