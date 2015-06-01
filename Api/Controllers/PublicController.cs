@@ -20,5 +20,13 @@ namespace Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, output);
         }
+
+        [Route("WhereIsHortlak")]
+        public HttpResponseMessage GetHostName()
+        {
+            var output = Environment.MachineName;
+
+            return Request.CreateResponse(HttpStatusCode.OK, output);
+        }
     }
 }
