@@ -109,6 +109,7 @@ namespace Service
             }
             catch (Exception e)
             {
+                //UndoConsulMagic();
                 Console.WriteLine("Unable to register via the Consul agent. {0}", e);                    
             }
             

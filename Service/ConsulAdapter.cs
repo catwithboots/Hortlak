@@ -70,24 +70,41 @@ namespace Service
         public void ReleaseSemophore()
         {
             if (_semaphore.IsHeld && _semaphore != null)
+            {
                 _semaphore.Release();
+                // Give Consul time to release the semaphore
+                Thread.Sleep(1000);
+            }
         }
 
         public void DestroySemaphore()
         {
-            try
+            if (!_semaphore.IsHeld && _semaphore != null)
             {
-                if (!_semaphore.IsHeld && _semaphore != null)
+                try
+                {
                     _semaphore.Destroy();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0}", e);
+                } 
             }
-            catch (SemaphoreInUseException) {}
+
         }
 
         public void DeRegisterService()
         {
             // Only if not in use !!! <-<-<-
+            try
+            {
+                _client.Agent.ServiceDeregister(_appname);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0}", e);
+            }
             
-            _client.Agent.ServiceDeregister(_appname);
         }
 
         public void RegisterService()
