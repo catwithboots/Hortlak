@@ -103,7 +103,15 @@ namespace Service
         {
             consulAdapter = new ConsulAdapter(ApplicationName, ApplicationPort, ApplicationIp, OwnerLimit);
 
-            consulAdapter.Start();
+            try
+            {
+                consulAdapter.Start();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to register via the Consul agent. {0}", e);                    
+            }
+            
         }
 
         protected void UndoConsulMagic()

@@ -22,6 +22,12 @@ namespace Service
             //  Enable attribute based routing
             config.MapHttpAttributeRoutes();
 
+            // Enable Cross-Origin requests globally
+            //var cors = new EnableCorsAttribute("www.example.com", "*", "*");
+
+            // Enable Cross-Origin requests
+            config.EnableCors();
+
             appBuilder.UseWebApi(config);
         }
     }
