@@ -7,7 +7,7 @@ RUN git clone https://github.com/catwithboots/Hortlak.git
 WORKDIR /repos/Hortlak
 RUN mkdir /root/.config
 RUN mkdir /root/.config/NuGet
-COPY NuGet.Config /root/.config/NuGet/NuGet.Config
+COPY .nuget/NuGet.Config /root/.config/NuGet/NuGet.Config
 RUN nuget restore Hortlak.sln
 RUN xbuild Hortlak.sln
 
